@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareFlow | Login & Signup</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: linear-gradient(135deg, #eaf5ff, #f5f8fc);
+      color: #19324d;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 950px;
+      width: 100%;
+      min-height: 580px;
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 15px 45px rgba(24, 65, 100, 0.12);
+    }
+
+    .left-panel {
+      background: linear-gradient(145deg, #075985, #0e7490);
+      color: white;
+      padding: 48px 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .logo span {
+      color: #a5f3fc;
+    }
+
+    .tagline {
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-bottom: 42px;
+      color: #cffafe;
+    }
+
+    .left-panel h1 {
+      font-size: 32px;
+      line-height: 1.3;
+      margin-bottom: 18px;
+    }
+
+    .left-panel p {
+      color: #e0f2fe;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .features {
+      margin-top: 30px;
+      line-height: 2.5;
+      font-size: 14px;
+    }
+
+    .right-panel {
+      padding: 42px 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-box h2 {
+      font-size: 27px;
+      margin-bottom: 9px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #718096;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #d7e2ed;
+      border-radius: 9px;
+      background: #fbfdff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 65px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #0369a1;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .options {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0 20px;
+      font-size: 13px;
+      color: #526579;
+    }
+
+    .options input {
+      width: auto;
+    }
+
+    .primary-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 9px;
+      background: #0369a1;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .primary-btn:hover {
+      background: #075985;
+    }
+
+    .switch-text {
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 23px;
+    }
+
+    .switch-text button {
+      border: none;
+      background: none;
+      color: #0369a1;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .notice {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #64748b;
+      background: #f0f9ff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    #message {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #b91c1c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 14px;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .left-panel {
+        padding: 28px;
+      }
+
+      .left-panel h1 {
+        font-size: 25px;
+      }
+
+      .tagline {
+        margin-bottom: 20px;
+      }
+
+      .features {
+        display: none;
+      }
+
+      .right-panel {
+        padding: 30px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <section class="left-panel">
+      <div class="logo">✚ Care<span>Flow</span></div>
+
+      <div class="tagline">CLINICAL PATHWAY INTELLIGENCE</div>
+
+      <h1>Better insights.<br>Better care pathways.</h1>
+
+      <p>
+        Explore healthcare operations, understand patient journeys,
+        and discover process bottlenecks using data analytics.
+      </p>
+
+      <div class="features">
+        ✓ Patient pathway analysis<br>
+        ✓ Process monitoring<br>
+        ✓ Healthcare analytics
+      </div>
+    </section>
+
+    <section class="right-panel">
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="form-box">
+        <h2>Welcome back</h2>
+
+        <p class="subtitle">
+          Sign in to explore the CareFlow demo.
+        </p>
+
+        <div class="form-group">
+          <label for="loginEmail">Email address</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required minlength="8">
+
+            <button
+              type="button"
+              class="toggle-password"
+              data-target="loginPassword">
+              Show
+            </button>
+          </div>
+        </div>
+
+        <div class="options">
+          <input type="checkbox" id="remember">
+          <label for="remember" style="margin:0;font-weight:normal">
+            Remember me
+          </label>
+        </div>
+
+        <button type="submit" class="primary-btn">
+          Sign in to CareFlow →
+        </button>
+
+        <p class="switch-text">
+          New to CareFlow?
+          <button type="button" id="showSignup">
+            Create an account
+          </button>
+        </p>
+
+        <div class="notice">
+          Demo interface only. Real account authentication
+          must be configured before production use.
+        </div>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="signupForm" class="form-box hidden">
+        <h2>Create your account</h2>
+
+        <p class="subtitle">
+          Create a profile to explore CareFlow.
+        </p>
+
+        <div class="form-group">
+          <label for="fullName">Full name</label>
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Enter your full name"
+            autocomplete="name"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="signupEmail">Work email</label>
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="role">Your role</label>
+          <select id="role" required>
+            <option value="">Select your role</option>
+            <option>Healthcare Analyst</option>
+            <option>Care Coordinator</option>
+            <option>Hospital Administrator</option>
+            <option>Researcher</option>
+            <option>Student</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="signupPassword">Create password</label>
+
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="At least 8 characters"
+              autocomplete="new-password"
+              minlength="8"
+              required>
+
+            <button
+              type="button"
+              class="toggle-password"
+              data-target="signupPassword">
+              Show
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Re-enter your password"
+              autocomplete="new-password"
+              minlength="8"
+              required>
+
+            <button
+              type="button"
+              class="toggle-password"
+              data-target="confirmPassword">
+              Show
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="primary-btn">
+          Create demo account →
+        </button>
+
+        <p class="switch-text">
+          Already have an account?
+          <button type="button" id="showLogin">
+            Sign in
+          </button>
+        </p>
+
+        <div class="notice">
+          This form is a front-end demonstration. It does not
+          save accounts or passwords to a server.
+        </div>
+      </form>
+
+      <p id="message" role="status" aria-live="polite"></p>
+
+      <div class="footer">
+        CAREFLOW · CLINICAL PATHWAY INTELLIGENCE
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const message = document.getElementById("message");
+
+    function showForm(form) {
+      loginForm.classList.toggle("hidden", form !== "login");
+      signupForm.classList.toggle("hidden", form !== "signup");
+      message.textContent = "";
+    }
+
+    document.getElementById("showSignup").addEventListener(
+      "click", () => showForm("signup")
+    );
+
+    document.getElementById("showLogin").addEventListener(
+      "click", () => showForm("login")
+    );
+
+    document.querySelectorAll(".toggle-password").forEach(button => {
+      button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.target);
+        const visible = input.type === "password";
+
+        input.type = visible ? "text" : "password";
+        button.textContent = visible ? "Hide" : "Show";
+      });
+    });
+
+    signupForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const password =
+        document.getElementById("signupPassword").value;
+
+      const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        message.textContent = "Passwords do not match.";
+        return;
+      }
+
+      message.textContent =
+        "Form validated. Account creation is not connected to a server.";
+    });
+
+    loginForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      message.textContent =
+        "Login is not connected yet. Configure a secure authentication service to sign in.";
+    });
+  </script>
+</body>
+</html>
